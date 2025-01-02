@@ -7,6 +7,9 @@ This is a plugin for neovim that helps you to implement interfaces in go.
 
 ## Installation
 
+> [!Important]
+> **NOT WORKING NOW! PLEASE WAIT FOR DAYS!**
+
 I only tested this plugin with [lazy.nvim](https://github.com/folke/lazy.nvim), but it should work with any other plugin manager.
 
 ```lua
