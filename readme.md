@@ -39,6 +39,7 @@ A Neovim plugin designed to simplify the implementation of Go interfaces.
   dependencies = {
     "MunifTanjim/nui.nvim",
     "ibhagwan/fzf-lua",
+    "nvim-lua/plenary.nvim",
   },
   opts = {},
   keys = {
