@@ -7,6 +7,8 @@
 
 A Neovim plugin designed to simplify the implementation of Go interfaces.
 
+https://github.com/user-attachments/assets/0f03a4f0-536c-42c1-a436-ada1775439ed
+
 ## 🌟 Key Features
 
 - **Fully Asynchronous**:
