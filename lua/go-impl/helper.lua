@@ -39,13 +39,8 @@ local ts_query_interface = vim.treesitter.query.parse(
 ---@param bufnr integer The buffer number
 ---@return vim.lsp.Client? client The gopls client
 function M.get_gopls(bufnr)
-	local clients = vim.lsp.get_clients({ bufnr = bufnr })
-
-	for _, client in ipairs(clients) do
-		if client.name == "gopls" then
-			return client
-		end
-	end
+	local clients = vim.lsp.get_clients({ bufnr = bufnr, name = "gopls" })
+	return clients and clients[1]
 end
 
 ---Try to get the current struct name under the cursor
