@@ -1,6 +1,5 @@
 local ts_utils = require("nvim-treesitter.ts_utils")
 local parsers = require("nvim-treesitter.parsers")
-local fl_utils = require("fzf-lua.utils")
 local job = require("plenary.job")
 
 local config = require("go-impl.config")
@@ -155,21 +154,6 @@ function M.get_lnum(receiver)
 				end
 				return lnum
 			end
-		end
-	end
-end
-
----Parse the package name from the fzf entry
----@param raw_fzf_entry string?
----@return string? package The package name
-function M.parse_package(raw_fzf_entry)
-	if not raw_fzf_entry then
-		return
-	end
-	local parts = vim.split(raw_fzf_entry, fl_utils.nbsp)
-	for _, part in ipairs(parts) do
-		if string.match(part, "%(([^)]+)%)") then
-			return string.match(part, "%(([^)]+)%)")
 		end
 	end
 end
