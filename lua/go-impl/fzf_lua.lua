@@ -2,11 +2,11 @@ local config = require("go-impl.config")
 
 local M = {}
 
-function M.init()
-	if M.initiated then
+function M.env()
+	if M.env_initiated then
 		return
 	end
-	M.initiated = true
+	M.env_initiated = true
 	M.core = require("fzf-lua")
 	M.defaults = require("fzf-lua.defaults")
 	M.make_entry = require("fzf-lua.make_entry")
@@ -160,7 +160,7 @@ end
 function M.is_loaded()
 	local is_loaded = pcall(require, "fzf-lua")
 	if is_loaded then
-		M.init()
+		M.env()
 	end
 	return is_loaded
 end
