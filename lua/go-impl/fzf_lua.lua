@@ -187,13 +187,6 @@ function M.get_interface(co, bufnr, gopls)
 	local selected = coroutine.yield()
 	local file = M.path.entry_to_file(selected and selected[1])
 
-	vim.notify(vim.inspect({
-		package = selected and parse_package(selected[1]),
-		path = file.path,
-		col = file.col,
-		line = file.line,
-	}))
-
 	return {
 		package = selected and parse_package(selected[1]),
 		path = file.path,
