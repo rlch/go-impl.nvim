@@ -5,7 +5,7 @@
 
 # go-impl.nvim
 
-✌️ A Neovim plugin designed to simplify the implementation of Go interfaces.
+🚀 A Neovim plugin designed to simplify the implementation of Go interfaces.
 
 [sample-video]
 
@@ -20,7 +20,7 @@
 - **Treesitter Validation**:
   Ensures the receiver is valid before executing `impl`.
 - **Fast Interface Selection**:
-  Uses [snacks][snacks-url] picker or [ibhagwan/fzf-lua](fzf-lua-url) for quick
+  Uses [snacks][snacks-url] picker or [ibhagwan/fzf-lua][fzf-lua-url] for quick
   and efficient interface selection.
 - **Generic Parameters Support**:
   Allows specifying types for generic parameters with highlighting and interface
@@ -32,7 +32,7 @@
 - Latest version of [josharian/impl][impl]
   - Install with `go install github.com/josharian/impl@latest`
 - Fuzzy Finder (choose one of the following)
-  - [folke/snacks.nvim][snacks-url] (recommended)
+  - [folke/snacks.nvim][snacks-url] (recommended, bundled with [LazyVim][LazyVim])
   - [ibhagwan/fzf-lua][fzf-lua-url]
 
 ## 🚚 Installation
@@ -100,6 +100,7 @@ MIT
 
 [impl]: https://github.com/josharian/impl
 [sample-video]: https://github.com/user-attachments/assets/0f03a4f0-536c-42c1-a436-ada1775439ed
+[LazyVim]: https://www.lazyvim.org/
 [snacks-url]: https://github.com/folke/snacks.nvim
 [fzf-lua-url]: https://github.com/ibhagwan/fzf-lua
 [goimpl.nvim]: https://github.com/edolphin-ydf/goimpl.nvim
