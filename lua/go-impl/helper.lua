@@ -277,7 +277,7 @@ function M.impl(receiver, package, interface_name, lnum)
 		end,
 		on_exit = function(_, code)
 			if code ~= 0 then
-				vim.notify("Failed to add the implementation")
+				vim.notify("Failed to add the implementation", vim.log.levels.ERROR, { title = "go-impl" })
 				return
 			end
 

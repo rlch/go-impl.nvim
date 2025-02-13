@@ -11,7 +11,7 @@ function M.open()
 	local gopls = helper.get_gopls(bufnr)
 
 	if not gopls then
-		vim.notify("No gopls client found in the current buffer")
+		vim.notify("No gopls client found in the current buffer", vim.log.levels.WARN, { title = "go-impl" })
 		return
 	end
 
@@ -29,7 +29,7 @@ function M.open()
 		-- Get the line number to insert the implentation
 		local lnum = helper.get_lnum(receiver)
 		if not lnum then
-			vim.notify("Invalid receiver provided")
+			vim.notify("Invalid receiver provided", vim.log.levels.INFO, { title = "go-impl" })
 			return
 		end
 
@@ -51,7 +51,7 @@ function M.open()
 		local interface_declaration, interface_base_name, generic_parameter_list, generic_parameters =
 			helper.parse_interface(path_data.path, path_data.line, path_data.col)
 		if not interface_declaration or not interface_base_name or not generic_parameters then
-			vim.notify("Failed to parse the selected item")
+			vim.notify("Failed to parse the selected item", vim.log.levels.WARN, { title = "go-impl" })
 			return
 		end
 
@@ -69,7 +69,11 @@ function M.open()
 				end)
 				local arg = coroutine.yield()
 				if not arg then
-					vim.notify("Failed to get the generic type: " .. generic_parameter.name)
+					vim.notify(
+						"Failed to get the generic type: " .. generic_parameter.name,
+						vim.log.levels.ERROR,
+						{ title = "go-impl" }
+					)
 					return
 				end
 				table.insert(generic_arguments, arg)
