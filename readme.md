@@ -1,13 +1,15 @@
+<!-- markdownlint-disable no-inline-html -->
+<!-- markdownlint-disable first-line-heading -->
+
+<div align="center">
+
 # go-impl.nvim
 
-<!-- markdownlint-disable no-inline-html -->
+✌️ A Neovim plugin designed to simplify the implementation of Go interfaces.
 
-> [!WARNING]
-> THIS PROJECT IS STILL EXPERIMENTAL.
+[sample-video]
 
-A Neovim plugin designed to simplify the implementation of Go interfaces.
-
-https://github.com/user-attachments/assets/0f03a4f0-536c-42c1-a436-ada1775439ed
+</div>
 
 ## 🌟 Key Features
 
@@ -18,8 +20,8 @@ https://github.com/user-attachments/assets/0f03a4f0-536c-42c1-a436-ada1775439ed
 - **Treesitter Validation**:
   Ensures the receiver is valid before executing `impl`.
 - **Fast Interface Selection**:
-  Uses [ibhagwan/fzf-lua](https://github.com/ibhagwan/fzf-lua) for quick and
-  efficient interface selection.
+  Uses [snacks][snacks-url] picker or [ibhagwan/fzf-lua](fzf-lua-url) for quick
+  and efficient interface selection.
 - **Generic Parameters Support**:
   Allows specifying types for generic parameters with highlighting and interface
   declaration.
@@ -27,7 +29,11 @@ https://github.com/user-attachments/assets/0f03a4f0-536c-42c1-a436-ada1775439ed
 ## 📋 Requirements
 
 - Neovim >= 0.10.0
-- Latest version of [josharian/impl](https://github.com/josharian/impl)
+- Latest version of [josharian/impl][impl]
+  - Install with `go install github.com/josharian/impl@latest`
+- Fuzzy Finder (choose one of the following)
+  - [folke/snacks.nvim][snacks-url] (recommended)
+  - [ibhagwan/fzf-lua][fzf-lua-url]
 
 ## 🚚 Installation
 
@@ -40,8 +46,11 @@ https://github.com/user-attachments/assets/0f03a4f0-536c-42c1-a436-ada1775439ed
   ft = "go",
   dependencies = {
     "MunifTanjim/nui.nvim",
-    "ibhagwan/fzf-lua",
     "nvim-lua/plenary.nvim",
+
+    -- Choose one of the following fuzzy finder
+    "folke/snacks.nvim",
+    "ibhagwan/fzf-lua",
   },
   opts = {},
   keys = {
@@ -73,16 +82,27 @@ Check out all available options in [config.lua](lua/go-impl/config.lua).
 
 ## 🔄 Alternatives and Related Projects
 
-- [edolphin-ydf/goimpl.nvim](https://github.com/edolphin-ydf/goimpl.nvim) -
+- [edolphin-ydf/goimpl.nvim][goimpl.nvim] -
   Partial support for generic interfaces and telescope search.
   - This project is inspired by goimpl.nvim.
-- [olexsmir/gopher.nvim](https://github.com/olexsmir/gopher.nvim) -
+- [olexsmir/gopher.nvim][gopher.nvim] -
   Supports non-generic interfaces but requires manual input for arguments.
-- [fatih/vim-go](https://github.com/fatih/vim-go) -
+- [fatih/vim-go][vim-go] -
   A comprehensive Go development plugin for Vim.
-- [rhysd/vim-go-impl](https://github.com/rhysd/vim-go-impl) -
+- [rhysd/vim-go-impl][vim-go-impl] -
   Wraps the `impl` command in Vim, and also needs manual input for arguments.
 
 ## 🪪 License
 
 MIT
+
+<!-- LINKS -->
+
+[impl]: https://github.com/josharian/impl
+[sample-video]: https://github.com/user-attachments/assets/0f03a4f0-536c-42c1-a436-ada1775439ed
+[snacks-url]: https://github.com/folke/snacks.nvim
+[fzf-lua-url]: https://github.com/ibhagwan/fzf-lua
+[goimpl.nvim]: https://github.com/edolphin-ydf/goimpl.nvim
+[gopher.nvim]: https://github.com/olexsmir/gopher.nvim
+[vim-go]: https://github.com/fatih/vim-go
+[vim-go-impl]: https://github.com/rhysd/vim-go-impl

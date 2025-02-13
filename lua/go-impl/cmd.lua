@@ -1,7 +1,6 @@
-local fl_path = require("fzf-lua.path")
-
 local ui = require("go-impl.ui")
 local helper = require("go-impl.helper")
+local config = require("go-impl.config")
 
 local M = {}
 
@@ -34,22 +33,36 @@ function M.open()
 		end
 
 		-- Interface
-		ui.get_interface(bufnr, gopls, function(selected)
-			coroutine.resume(co, selected)
-		end)
+		---@class InterfaceData
+		---@field package string
+		---@field path string
+		---@field line integer
+		---@field col integer
 
-		local selected = coroutine.yield()
-		local package = selected and helper.parse_package(selected[1])
-		local path_data = fl_path.entry_to_file(selected and selected[1])
+		---@type InterfaceData?
+		local interface_data = nil
 
-		if not package or not path_data or not path_data.path or not path_data.col or not path_data.line then
-			vim.notify("Failed to parse the selected item")
-			return
+		if config.options.picker then
+			ui.try_get_interface(config.options.picker, co, bufnr, gopls)
+		else
+			for _, finder in ipairs({ "snacks", "fzf_lua" }) do
+				interface_data = ui.try_get_interface(finder, co, bufnr, gopls)
+				if interface_data then
+					break
+				end
+			end
+		end
+
+		for _, key in pairs({ "package", "path", "line", "col" }) do
+			if not interface_data or not interface_data[key] then
+				vim.notify("Failed to get the interface data", vim.log.levels.WARN, { title = "go-impl" })
+				return
+			end
 		end
 
 		-- Generic Arguments
 		local interface_declaration, interface_base_name, generic_parameter_list, generic_parameters =
-			helper.parse_interface(path_data.path, path_data.line, path_data.col)
+			helper.parse_interface(interface_data.path, interface_data.line, interface_data.col)
 		if not interface_declaration or not interface_base_name or not generic_parameters then
 			vim.notify("Failed to parse the selected item", vim.log.levels.WARN, { title = "go-impl" })
 			return
@@ -85,7 +98,7 @@ function M.open()
 		if #generic_arguments > 0 then
 			interface_name = string.format("%s[%s]", interface_base_name, table.concat(generic_arguments, ","))
 		end
-		helper.impl(receiver, package, interface_name, lnum)
+		helper.impl(receiver, interface_data.package, interface_name, lnum)
 	end)()
 end
 

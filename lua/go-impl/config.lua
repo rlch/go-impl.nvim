@@ -2,6 +2,11 @@ local M = {}
 
 ---@class Config
 M.options = {
+	---@type nil|"snacks"|"fzf_lua"
+	---@usage nil - Use snacks if available, otherwise use fzf-lua
+	---@usage "snacks" - Use folke/snacks picker
+	---@usage "fzf_lua" - Use ibhagwan/fzf-lua
+	picker = nil,
 	insert = {
 		---@type "after"|"before"|"end"
 		---@usage "after" - insert after the receiver's struct declaration
