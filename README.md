@@ -5,7 +5,7 @@
 
 # go-impl.nvim
 
-🚀 A Neovim plugin designed to simplify the implementation of Go interfaces.
+🚀 A faster way to implement Go interfaces in Neovim.
 
 [sample-video]
 
