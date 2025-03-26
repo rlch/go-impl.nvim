@@ -43,7 +43,7 @@ function M.open()
 		local interface_data = nil
 
 		if config.options.picker then
-			ui.try_get_interface(config.options.picker, co, bufnr, gopls)
+			interface_data = ui.try_get_interface(config.options.picker, co, bufnr, gopls)
 		else
 			for _, finder in ipairs({ "snacks", "fzf_lua" }) do
 				interface_data = ui.try_get_interface(finder, co, bufnr, gopls)
