@@ -13,7 +13,7 @@ local M = {}
 ---@field is_loaded fun(): boolean
 ---@field get_interface fun(co: thread, bufnr: integer, gopls: vim.lsp.Client): InterfaceData
 
----@type Map<string, FuzzyFinder>
+---@type table<string, FuzzyFinder>
 local fuzzy_finders = {
 	fzf_lua = require("go-impl.fzf_lua"),
 	snacks = require("go-impl.snacks"),
