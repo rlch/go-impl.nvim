@@ -141,18 +141,25 @@ function M.get_generic_argument(opts, callback)
 		}, { dir = "col" })
 	)
 	layout:mount()
-	input:on({
-		nui_event.BufWinLeave,
-		nui_event.BufLeave,
-		nui_event.InsertLeavePre,
-	}, function()
-		layout:unmount()
-	end)
+
+	local inited = false
 
 	-- Weirdly, the popup is not in insert mode by default, so we need to force it
 	vim.defer_fn(function()
 		vim.api.nvim_command("startinsert!")
+		inited = true
 	end, 40)
+
+	input:on({
+		nui_event.BufWinLeave,
+		nui_event.BufLeave,
+		nui_event.InsertLeavePre,
+	}, function(ctx)
+		if ctx and ctx.event == nui_event.InsertLeavePre and not inited then
+			return
+		end
+		layout:unmount()
+	end)
 end
 
 ---Try to get the interface from the given fuzzy finder
