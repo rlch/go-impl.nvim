@@ -112,7 +112,6 @@ function M.get_lnum(receiver)
 	for id, capture_node in ts_query_struct:iter_captures(root, 0) do
 		local capture = ts_query_struct.captures[id]
 		local text = vim.treesitter.get_node_text(capture_node, 0)
-		vim.inspect(text)
 
 		if capture == "struct_declaration" then
 			current_struct_node = capture_node
